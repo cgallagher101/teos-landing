@@ -199,27 +199,27 @@
     max-width: 520px; margin: 1rem 0 0;
     line-height: 1.6;
   }
-  .hero-input-wrap {
-    margin-top: 1.75rem; position: relative;
-    background: var(--surface); border: 1px solid var(--teal-border);
-    border-radius: var(--radius-pill); display: flex; align-items: center;
-    padding: 0.375rem 0.375rem 0.375rem 1.5rem;
-    transition: border-color 0.2s;
+  .hero-eyebrow {
+    font-size: 0.8125rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--teal); margin-bottom: 0.5rem;
   }
-  .hero-input-wrap:focus-within { border-color: var(--teal); }
-  .hero-input {
-    flex: 1; border: none; background: none; outline: none;
-    font: inherit; font-size: 1rem; color: var(--text);
-    padding: 0.625rem 0;
+  .hero-badge {
+    display: inline-block; background: var(--teal); color: #fff;
+    font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-pill); margin-bottom: 1rem;
+    letter-spacing: 0.02em;
   }
-  .hero-input::placeholder { color: var(--text-muted); }
-  .hero-send {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: var(--teal); display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s; flex-shrink: 0;
+  .hero-cta-row {
+    margin-top: 1.75rem; display: flex; align-items: center;
+    gap: 1.25rem; flex-wrap: wrap;
   }
-  .hero-send:hover { background: var(--teal-hover); }
-  .hero-send svg { width: 18px; height: 18px; }
+  .hero-btn { padding: 0.875rem 2rem; font-size: 1.0625rem; }
+  .hero-link {
+    display: inline-flex; align-items: center; gap: 0.375rem;
+    color: var(--teal); font-weight: 500; font-size: 0.9375rem;
+    text-decoration: none; transition: opacity 0.2s;
+  }
+  .hero-link:hover { opacity: 0.75; }
   .hero-trust {
     margin-top: 1.25rem; display: flex; align-items: center;
     gap: 1rem; flex-wrap: wrap;
@@ -780,11 +780,31 @@
   .footer-legal a { color: var(--text-muted); transition: color 0.2s; }
   .footer-legal a:hover { color: var(--text-secondary); }
 
+  /* ── STICKY MOBILE CTA ── */
+  .sticky-cta {
+    display: none; position: fixed; bottom: 0; left: 0; right: 0;
+    z-index: 999; background: var(--surface);
+    border-top: 1px solid var(--teal-border);
+    padding: 0.75rem 1rem; padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    transform: translateY(100%); transition: transform 0.3s ease;
+  }
+  .sticky-cta.visible { transform: translateY(0); }
+  .sticky-cta-inner { text-align: center; }
+  .sticky-cta-btn { width: 100%; max-width: 360px; padding: 0.875rem; font-size: 1rem; }
+  .sticky-cta-note {
+    display: block; margin-top: 0.375rem;
+    font-size: 0.75rem; color: var(--text-muted); font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    .sticky-cta { display: block; }
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
     .hero-split { grid-template-columns: 1fr; text-align: center; }
     .hero-content { text-align: center; }
     .hero-subtitle { margin-left: auto; margin-right: auto; }
+    .hero-cta-row { justify-content: center; }
     .hero-trust { justify-content: center; }
     .hero-visual { margin-top: 2rem; }
     .float-card { display: none; }
@@ -1414,7 +1434,8 @@
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="https://teoshealth.com" class="nav-signin">Sign In</a>
-      <a href="https://teoshealth.com" class="btn-primary">Get Started</a>
+      <!-- TODO: Chris to confirm real signup URL -->
+      <a href="https://teoshealth.com/signup" class="btn-primary">Start for $10/month</a>
     </div>
     <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -1441,32 +1462,33 @@
   </div>
   <div class="hero-split">
     <div class="hero-content">
-      <h1>Healthcare without barriers.</h1>
+      <div class="hero-eyebrow">Healthcare without barriers.</div>
+      <div class="hero-badge">Now serving all of Texas</div>
+      <h1>A real doctor. $10&thinsp;a&thinsp;month.<br>No insurance needed.</h1>
       <p class="hero-subtitle">
-        Medical care that starts with listening.
-        Describe your symptoms, and a Teos physician will help you figure out what's next.
-        Starting at $10&thinsp;a&thinsp;month.
+        Message a Teos physician about anything — symptoms, prescriptions, lab results. Get answers in minutes, not weeks. Available across Texas.
       </p>
-      <div class="hero-input-wrap">
-        <input type="text" class="hero-input" placeholder="e.g. chest pain after meals">
-        <button class="hero-send" aria-label="Send">
-          <svg viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 10h12M12 4l6 6-6 6"/>
-          </svg>
-        </button>
+      <div class="hero-cta-row">
+        <!-- TODO: Chris to confirm real signup URL -->
+        <a href="https://teoshealth.com/signup" class="btn-primary hero-btn">Start for $10/month</a>
+        <a href="#how" class="hero-link">See how it works <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M8 3v10M3 8l5 5 5-5"/></svg></a>
       </div>
       <div class="hero-trust">
         <span>
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>
-          HIPAA Compliant
-        </span>
-        <span>
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="6" r="3"/><path d="M3 14c0-2.8 2.2-5 5-5s5 2.2 5 5"/></svg>
-          Teos Physicians
+          Texas-licensed physicians
         </span>
         <span>
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
-          Responses in Minutes
+          Answers in minutes
+        </span>
+        <span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>
+          HIPAA compliant
+        </span>
+        <span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1.5l1.5 3.5h4l-3 2.5 1 4L8 9l-3.5 2.5 1-4-3-2.5h4z"/></svg>
+          30-day money-back guarantee
         </span>
       </div>
     </div>
@@ -1481,21 +1503,21 @@
             <span class="phone-header-logo">teos</span>
           </div>
           <div class="chat-bubble chat-ai">Hey, welcome — you're in the right place at Teos. What's going on?</div>
-          <div class="chat-bubble chat-user">I've been having chest pain after meals for the past week</div>
-          <div class="chat-bubble chat-ai">I understand. Let me ask you some questions to help figure out what's going on.</div>
+          <div class="chat-bubble chat-user">I've been having burning stomach pain after eating for about 2 weeks. I take ibuprofen for back pain.</div>
+          <div class="chat-bubble chat-ai">I'd like to ask a few questions to understand your symptoms. Is the pain worse on an empty stomach or right after meals?</div>
           <div class="chat-dx">
-            <div class="chat-dx-title">Initial Assessment</div>
+            <div class="chat-dx-title">Sent to your physician for review</div>
             <div class="chat-dx-item">
               <div class="chat-dx-bar" style="width:70px"></div>
-              <span class="chat-dx-label">GERD / Acid reflux</span>
+              <span class="chat-dx-label">GERD / Peptic disease</span>
             </div>
             <div class="chat-dx-item">
               <div class="chat-dx-bar" style="width:45px; opacity:0.6"></div>
-              <span class="chat-dx-label">Gastritis</span>
+              <span class="chat-dx-label">NSAID gastropathy</span>
             </div>
             <div class="chat-dx-item">
               <div class="chat-dx-bar" style="width:28px; opacity:0.4"></div>
-              <span class="chat-dx-label">Esophageal spasm</span>
+              <span class="chat-dx-label">Functional dyspepsia</span>
             </div>
           </div>
           <div class="phone-input-mock">
@@ -1908,7 +1930,8 @@
             Care navigation &amp; referrals
           </li>
         </ul>
-        <a href="https://teoshealth.com" class="btn-primary price-cta">Get Started</a>
+        <!-- TODO: Chris to confirm real signup URL -->
+        <a href="https://teoshealth.com/signup" class="btn-primary price-cta">Start for $10/month</a>
         <div class="price-guarantee">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="var(--text-muted)" stroke-width="1.5"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1z"/><path d="M8 4v4l2.5 1.5"/></svg>
           30-day money-back guarantee
@@ -2010,25 +2033,25 @@
         </div>
         <div class="annual-row">
           <span class="annual-label">Teos</span>
-          <div class="annual-bar-wrap"><div class="annual-bar annual-bar-teal" style="width:1.7%"></div></div>
-          <span class="annual-cost annual-cost-teal">$135</span>
+          <div class="annual-bar-wrap"><div class="annual-bar annual-bar-teal" style="width:1.9%"></div></div>
+          <span class="annual-cost annual-cost-teal">$155</span>
         </div>
       </div>
       <div class="annual-breakdown">
-        <strong>Teos breakdown:</strong> $120 annual membership (includes 2 doctor visits) + $15 follow-up = $135/yr.
-        Need more visits? Additional consultations are just $35 each. Most members use fewer because the unlimited medical guidance resolves their questions first.
+        <strong>Teos breakdown:</strong> $120 annual membership (includes 2 doctor visits) + 1 additional visit at $35 = $155/yr for 3 full physician visits.
+        Most members use fewer because unlimited medical guidance resolves their questions first.
       </div>
     </div>
 
     <div style="text-align:center">
       <div class="compare-savings">
         <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 2v16M6 6l4-4 4 4M14 14l-4 4-4-4"/></svg>
-        40% less than telehealth — with 2 doctor visits and unlimited guidance included
+        31% less than telehealth — with 3 full physician visits and unlimited guidance included
       </div>
     </div>
 
     <p class="compare-note">
-      ER and urgent care costs based on national averages for uninsured patients (KFF, 2024). Telehealth pricing reflects typical per-visit rates for major platforms. Teos membership: $10/mo includes unlimited medical guidance and 2 physician consultations per year. Additional visits $35; follow-ups within 14 days $15.
+      ER and urgent care costs based on national averages for uninsured patients (KFF, 2024). Telehealth pricing reflects typical per-visit rates for major platforms. Teos: $10/mo ($120/yr) includes unlimited medical guidance and 2 physician visits; additional visits $35 each; follow-ups within 14 days $15. Scenario shown: 3 full physician visits = $155/yr.
     </p>
   </div>
 </section>
@@ -2088,7 +2111,7 @@
     <div class="features-grid">
       <div class="feature-card">
         <h3>Safe, medical AI</h3>
-        <p>Always-on clinical intelligence built on the latest evidence-based medical research. Not a chatbot — a clinical platform designed around your health.</p>
+        <p>Clinical AI gathers your history and builds a thorough assessment — then a physician reviews and signs off before anything reaches you. Not a chatbot — a physician-led platform designed around your health.</p>
       </div>
       <div class="feature-card">
         <h3>Real doctors, fast</h3>
@@ -2227,7 +2250,7 @@
           Is Teos an AI or a real doctor?
           <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
         </button>
-        <div class="faq-a"><p>Both. Teos combines clinical intelligence with real physicians. Teos provides instant, evidence-based guidance for your health questions. When your situation requires deeper evaluation, a prescription, or a lab order, a licensed physician joins your conversation — typically in under 15 minutes.</p></div>
+        <div class="faq-a"><p>Both. Teos uses clinical AI to gather your history and build a thorough clinical picture — but every assessment is reviewed and signed off by a licensed physician before it reaches you. Your doctor sees the full conversation, adds their judgment, and handles prescriptions, lab orders, and referrals directly. You're never getting a diagnosis from a machine.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">
@@ -2287,9 +2310,19 @@
   <div class="wrap">
     <h2>Ready to get the care you deserve?</h2>
     <p>Join Teos and get access to 24/7 medical guidance and Teos physicians — starting at $10 a month.</p>
-    <a href="https://teoshealth.com" class="btn-primary">Get Started</a>
+    <!-- TODO: Chris to confirm real signup URL -->
+    <a href="https://teoshealth.com/signup" class="btn-primary">Start for $10/month</a>
   </div>
 </section>
+
+<!-- ════ STICKY MOBILE CTA ════ -->
+<div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+  <div class="sticky-cta-inner">
+    <!-- TODO: Chris to confirm real signup URL -->
+    <a href="https://teoshealth.com/signup" class="btn-primary sticky-cta-btn">Start for $10/month</a>
+    <span class="sticky-cta-note">30-day money-back guarantee</span>
+  </div>
+</div>
 
 <!-- ════ FOOTER ════ -->
 <footer class="footer">
@@ -2311,14 +2344,7 @@
             <li><a href="#faq">FAQ</a></li>
           </ul>
         </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Careers</a></li>
-          </ul>
-        </div>
+        <!-- About/Blog/Careers links removed until pages exist -->
         <div class="footer-col">
           <h4>Contact</h4>
           <ul>
@@ -2330,9 +2356,9 @@
     <div class="footer-bottom">
       <span>&copy; 2026 Chris Gallagher, MD and Associates, PLLC, DBA Teos</span>
       <div class="footer-legal">
-        <a href="#">Terms of Service</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">HIPAA Statement</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="hipaa.html">HIPAA Statement</a>
       </div>
     </div>
   </div>
@@ -2350,6 +2376,17 @@
   const links = document.getElementById('nav-links');
   toggle.addEventListener('click', () => links.classList.toggle('open'));
 
+  // Sticky mobile CTA — show after scrolling past hero
+  const stickyCta = document.getElementById('sticky-cta');
+  const heroSection = document.querySelector('.hero');
+  if (stickyCta && heroSection) {
+    const stickyObserver = new IntersectionObserver(([e]) => {
+      stickyCta.classList.toggle('visible', !e.isIntersecting);
+      stickyCta.setAttribute('aria-hidden', e.isIntersecting ? 'true' : 'false');
+    }, { threshold: 0 });
+    stickyObserver.observe(heroSection);
+  }
+
   // FAQ accordion
   document.querySelectorAll('.faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2366,16 +2403,5 @@
     });
   });
 
-  // Hero input redirect
-  const heroInput = document.querySelector('.hero-input');
-  const heroSend = document.querySelector('.hero-send');
-  const submitQuestion = () => {
-    const q = heroInput.value.trim();
-    if (q) {
-      window.location.href = `https://teoshealth.com/?question=${encodeURIComponent(q)}`;
-    }
-  };
-  heroSend.addEventListener('click', submitQuestion);
-  heroInput.addEventListener('keydown', e => { if (e.key === 'Enter') submitQuestion(); });
 </script>
 
