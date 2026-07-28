@@ -504,19 +504,44 @@
     padding: var(--section-py) 0;
     border-top: 1px solid var(--teal-border);
   }
-  .conditions-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+  .conditions-rows {
+    display: flex; flex-direction: column; gap: 1.25rem;
     margin-top: 3rem;
   }
-  .condition-col h3 {
-    font-size: 1rem; font-weight: 600; color: var(--text);
-    margin-bottom: 1rem; font-family: var(--font-body);
-    padding-bottom: 0.75rem; border-bottom: 2px solid var(--teal);
+  .condition-row {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--teal-border);
   }
-  .condition-col li {
+  .condition-row h3 {
+    font-size: 1rem; font-weight: 500; color: var(--text);
+    margin-bottom: 1rem; font-family: var(--font-body);
+  }
+  .condition-pills {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    align-items: center;
+  }
+  .condition-pill {
+    font-size: 0.8125rem; font-weight: 500;
+    padding: 0.35rem 0.85rem;
+    border-radius: 100px;
+    letter-spacing: 0.01em;
+  }
+  .condition-pill.t1 { background: #ddf0e8; color: #1a5e4a; }
+  .condition-pill.t2 { background: #c6e6d6; color: #135040; }
+  .condition-pill.t3 { background: #a8dbbf; color: #0d4435; }
+  @media (prefers-color-scheme: dark) {
+    .condition-pill.t1 { background: rgba(91,143,135,0.15); color: #9fe1cb; }
+    .condition-pill.t2 { background: rgba(91,143,135,0.25); color: #9fe1cb; }
+    .condition-pill.t3 { background: rgba(91,143,135,0.35); color: #9fe1cb; }
+  }
+  :root[data-theme="dark"] .condition-pill.t1 { background: rgba(91,143,135,0.15); color: #9fe1cb; }
+  :root[data-theme="dark"] .condition-pill.t2 { background: rgba(91,143,135,0.25); color: #9fe1cb; }
+  :root[data-theme="dark"] .condition-pill.t3 { background: rgba(91,143,135,0.35); color: #9fe1cb; }
+  .condition-trail {
     font-size: 0.8125rem; color: var(--text-muted);
-    text-transform: uppercase; letter-spacing: 0.04em;
-    padding: 0.4rem 0; font-weight: 500;
+    padding: 0.35rem 0.25rem; font-style: italic;
   }
 
   /* ── FEATURES ── */
@@ -764,7 +789,6 @@
     .float-card { display: none; }
     .how-grid { grid-template-columns: 1fr; gap: 1.25rem; }
     .benefits-grid { grid-template-columns: repeat(2, 1fr); }
-    .conditions-grid { grid-template-columns: repeat(2, 1fr); }
     .features-grid { grid-template-columns: 1fr; }
     .validation-stats { grid-template-columns: repeat(2, 1fr); }
     .validation-quotes { grid-template-columns: 1fr; }
@@ -792,7 +816,6 @@
     h1 { font-size: clamp(2rem, 7vw, 2.75rem); }
     .phone-frame { width: 240px; }
     .benefits-grid { grid-template-columns: 1fr; }
-    .conditions-grid { grid-template-columns: 1fr; }
     .footer-inner { flex-direction: column; }
     .footer-nav { flex-wrap: wrap; gap: 2rem; }
     .footer-bottom { flex-direction: column; text-align: center; }
@@ -2013,62 +2036,44 @@
 <section class="conditions">
   <div class="wrap">
     <div class="eyebrow">What We Cover</div>
-    <h2>From everyday questions to urgent concerns</h2>
+    <h2>Whatever you're going through, we're here</h2>
     <p class="section-sub">From symptoms to treatment, healthcare across the whole spectrum.</p>
-    <div class="conditions-grid">
-      <div class="condition-col">
-        <h3>Medical Advice</h3>
-        <ul>
-          <li>Cancer screenings</li>
-          <li>Nutrition</li>
-          <li>Preventive care</li>
-          <li>Health results review</li>
-          <li>Wearable data review</li>
-          <li>Care navigation</li>
-          <li>Vaccinations</li>
-          <li>Wound care</li>
-          <li>And more</li>
-        </ul>
+    <div class="conditions-rows">
+      <div class="condition-row">
+        <h3>I want to stay healthy and keep things on track</h3>
+        <div class="condition-pills">
+          <span class="condition-pill t1">Medication refills</span>
+          <span class="condition-pill t1">Chronic conditions</span>
+          <span class="condition-pill t1">Preventive care</span>
+          <span class="condition-pill t1">Nutrition</span>
+          <span class="condition-pill t1">Vaccinations</span>
+          <span class="condition-pill t1">Wellness exams</span>
+          <span class="condition-trail">and whatever else is on your mind</span>
+        </div>
       </div>
-      <div class="condition-col">
-        <h3>Urgent Care</h3>
-        <ul>
-          <li>Allergic reactions</li>
-          <li>Back pain</li>
-          <li>Cold, flu &amp; COVID-19</li>
-          <li>Cough &amp; sore throat</li>
-          <li>Headache &amp; migraines</li>
-          <li>Heartburn</li>
-          <li>Rashes &amp; skin issues</li>
-          <li>UTI &amp; STI</li>
-          <li>And more</li>
-        </ul>
+      <div class="condition-row">
+        <h3>Something's wrong and I need help now</h3>
+        <div class="condition-pills">
+          <span class="condition-pill t2">Cold, flu, and COVID</span>
+          <span class="condition-pill t2">UTI and STI</span>
+          <span class="condition-pill t2">Headaches and migraines</span>
+          <span class="condition-pill t2">Allergic reactions</span>
+          <span class="condition-pill t2">Back pain</span>
+          <span class="condition-pill t2">Skin rashes</span>
+          <span class="condition-trail">and anything that can't wait</span>
+        </div>
       </div>
-      <div class="condition-col">
-        <h3>Primary Care</h3>
-        <ul>
-          <li>Medication refills</li>
-          <li>Side effects</li>
-          <li>Second opinions</li>
-          <li>Specialist referrals</li>
-          <li>Work absence notes</li>
-          <li>Chronic disease</li>
-          <li>Provider suggestions</li>
-          <li>And more</li>
-        </ul>
-      </div>
-      <div class="condition-col">
-        <h3>Lab Testing</h3>
-        <ul>
-          <li>Annual wellness</li>
-          <li>Cardiometabolic</li>
-          <li>Men's health</li>
-          <li>Women's health</li>
-          <li>STI screening</li>
-          <li>Thyroid</li>
-          <li>Urinalysis</li>
-          <li>And more</li>
-        </ul>
+      <div class="condition-row">
+        <h3>I need a deeper answer or a second opinion</h3>
+        <div class="condition-pills">
+          <span class="condition-pill t3">Second opinions</span>
+          <span class="condition-pill t3">Specialist referrals</span>
+          <span class="condition-pill t3">Labs and imaging</span>
+          <span class="condition-pill t3">Women's health</span>
+          <span class="condition-pill t3">Men's health</span>
+          <span class="condition-pill t3">Thyroid and metabolic</span>
+          <span class="condition-trail">and the questions you haven't asked yet</span>
+        </div>
       </div>
     </div>
   </div>
