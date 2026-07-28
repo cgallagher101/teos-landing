@@ -169,6 +169,14 @@
   .btn-primary:hover { background: var(--teal-hover); transform: translateY(-1px); }
   .btn-primary:active { transform: translateY(0); }
   .btn-primary:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .nav-lang {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    background: none; border: 1px solid var(--elevated); border-radius: var(--radius-pill);
+    padding: 0.25rem 0.75rem; font: inherit; font-size: 0.8125rem;
+    color: var(--text-secondary); cursor: pointer; transition: border-color 0.2s, color 0.2s;
+  }
+  .nav-lang:hover:not(:disabled) { border-color: var(--teal); color: var(--teal); }
+  .nav-lang:disabled { opacity: 0.5; cursor: default; }
   .nav-signin { color: var(--text-secondary); font-weight: 500; transition: color 0.2s; }
   .nav-signin:hover { color: var(--text); }
   .nav-mobile-toggle {
@@ -779,6 +787,32 @@
   .footer-legal { display: flex; gap: 1.5rem; }
   .footer-legal a { color: var(--text-muted); transition: color 0.2s; }
   .footer-legal a:hover { color: var(--text-secondary); }
+
+  /* ── SOCIAL PROOF ── */
+  .social-proof {
+    padding: 3rem 0; border-bottom: 1px solid var(--elevated);
+  }
+  .social-proof .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+  .social-proof-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .sp-card {
+    background: var(--surface); border: 1px solid var(--elevated);
+    border-radius: 12px; padding: 1.5rem;
+  }
+  .sp-quote {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1rem; line-height: 1.6; color: var(--text);
+    font-style: italic; margin: 0 0 1rem;
+  }
+  .sp-quote::before { content: "\201C"; }
+  .sp-quote::after { content: "\201D"; }
+  .sp-author {
+    font-size: 0.8125rem; color: var(--text-muted); font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    .social-proof-grid { grid-template-columns: 1fr; }
+  }
 
   /* ── STICKY MOBILE CTA ── */
   .sticky-cta {
@@ -1433,6 +1467,11 @@
       <a href="#how">How It Works</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
+      <!-- Spanish page is a fast-follow; toggle is non-functional for now -->
+      <button class="nav-lang" aria-label="Cambiar a espa&ntilde;ol" disabled>
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2c-2 2-2 10 0 12M8 2c2 2 2 10 0 12"/></svg>
+        Espa&ntilde;ol
+      </button>
       <a href="https://teoshealth.com" class="nav-signin">Sign In</a>
       <!-- TODO: Chris to confirm real signup URL -->
       <a href="https://teoshealth.com/signup" class="btn-primary">Start for $10/month</a>
@@ -1536,6 +1575,27 @@
       </div>
       <div class="float-card float-status">
         <div class="float-card-value" style="font-size:0.875rem"><span class="status-dot"></span>Doctor available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SOCIAL PROOF ════ -->
+<!-- PLACEHOLDER: Replace these quotes with real beta-cohort testimonials before shipping to production. Do not launch paid traffic with placeholder quotes. -->
+<section class="social-proof">
+  <div class="wrap">
+    <div class="social-proof-grid">
+      <div class="sp-card">
+        <p class="sp-quote">I hadn't seen a doctor in three years because I couldn't afford it. With Teos I got answers the same day — and a prescription sent to my pharmacy.</p>
+        <div class="sp-author">Maria, Fort Worth</div>
+      </div>
+      <div class="sp-card">
+        <p class="sp-quote">I was skeptical about seeing a doctor online, but the Teos physician was more thorough than any urgent care visit I've had. And it cost me $10.</p>
+        <div class="sp-author">James, Houston</div>
+      </div>
+      <div class="sp-card">
+        <p class="sp-quote">My kid had a rash and I didn't know if it was serious. A Teos doctor looked at it and walked me through exactly what to do. No ER bill.</p>
+        <div class="sp-author">Sofia, San Antonio</div>
       </div>
     </div>
   </div>
@@ -1694,7 +1754,7 @@
     <div style="text-align:center">
       <div class="wt-elapsed">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 1.5"/></svg>
-        From first message to treatment plan: ~32 minutes &nbsp;·&nbsp; Based on real encounter data across 17 clinical sessions
+        From first message to treatment plan: ~32 minutes &nbsp;·&nbsp; Based on real encounter data
       </div>
     </div>
   </div>
@@ -1752,134 +1812,23 @@
   </div>
 </section>
 
-<!-- ════ SHOWCASE ════ -->
-<section class="showcase">
+<!-- ════ WHY TEOS ════ -->
+<section class="features">
   <div class="wrap">
-    <div class="showcase-item">
-      <div class="showcase-text">
-        <h3>Your <em>health records</em>, all in one place</h3>
-        <p>Unlike traditional healthcare, Teos uses pattern recognition to uncover insights from your whole health history — so our doctors and you can see the full picture.</p>
-        <a href="https://teoshealth.com">Review your results <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    <div class="eyebrow">Why Teos</div>
+    <h2>Healthcare that works the way it should</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Real doctors, fast</h3>
+        <p>Teos physicians join your conversation in minutes, not days. They see your full history, so you never start from zero.</p>
       </div>
-      <div class="showcase-visual">
-        <div class="app-frame">
-          <div class="app-titlebar">
-            <span class="app-dot app-dot-r"></span>
-            <span class="app-dot app-dot-y"></span>
-            <span class="app-dot app-dot-g"></span>
-            <span class="app-titlebar-text">Health Records</span>
-            <span style="width:40px"></span>
-          </div>
-          <div class="app-content">
-            <div class="record-row">
-              <span class="record-label">Blood Pressure</span>
-              <span class="record-value">118/76 mmHg</span>
-              <span class="record-status status-normal">Normal</span>
-            </div>
-            <div class="record-row">
-              <span class="record-label">Hemoglobin A1c</span>
-              <span class="record-value">5.4%</span>
-              <span class="record-status status-normal">Normal</span>
-            </div>
-            <div class="record-row">
-              <span class="record-label">LDL Cholesterol</span>
-              <span class="record-value">142 mg/dL</span>
-              <span class="record-status status-review">Review</span>
-            </div>
-            <div class="record-row">
-              <span class="record-label">Glucose</span>
-              <span class="record-value">94 mg/dL</span>
-              <span class="record-status status-normal">Normal</span>
-            </div>
-            <div class="record-row">
-              <span class="record-label">TSH</span>
-              <span class="record-value">2.1 mIU/L</span>
-              <span class="record-status status-normal">Normal</span>
-            </div>
-            <div class="record-row" style="border:none">
-              <span class="record-label">Vitamin D</span>
-              <span class="record-value">28 ng/mL</span>
-              <span class="record-status status-review">Low</span>
-            </div>
-          </div>
-        </div>
+      <div class="feature-card">
+        <h3>No insurance needed</h3>
+        <p>One transparent membership. No copays, no deductibles, no surprise bills. Quality healthcare that doesn't require navigating the insurance system.</p>
       </div>
-    </div>
-
-    <div class="showcase-item reverse">
-      <div class="showcase-text">
-        <h3>Your <em>medications</em>, all in one place</h3>
-        <p>Our doctors can prescribe medication, order refills, and help you navigate any side effects or interactions — all through a simple chat.</p>
-        <a href="https://teoshealth.com">Manage medications <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-      </div>
-      <div class="showcase-visual">
-        <div class="app-frame">
-          <div class="app-titlebar">
-            <span class="app-dot app-dot-r"></span>
-            <span class="app-dot app-dot-y"></span>
-            <span class="app-dot app-dot-g"></span>
-            <span class="app-titlebar-text">Medications</span>
-            <span style="width:40px"></span>
-          </div>
-          <div class="app-content">
-            <div class="rx-card">
-              <div class="rx-name">Omeprazole 20mg</div>
-              <div class="rx-detail">Take once daily, 30 min before breakfast</div>
-              <span class="rx-refill">Refill available</span>
-            </div>
-            <div class="rx-card">
-              <div class="rx-name">Lisinopril 10mg</div>
-              <div class="rx-detail">Take once daily in the morning</div>
-              <span class="rx-refill">Active</span>
-            </div>
-            <div class="rx-card">
-              <div class="rx-name">Vitamin D3 2000 IU</div>
-              <div class="rx-detail">Take once daily with food</div>
-              <span class="rx-refill">New prescription</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="showcase-item">
-      <div class="showcase-text">
-        <h3>Your <em>care</em>, all in one place</h3>
-        <p>From testing, treatments, and lifestyle changes to second opinions and specialist referrals — Teos covers the full spectrum of healthcare through a single conversation.</p>
-        <a href="https://teoshealth.com">Get started <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-      </div>
-      <div class="showcase-visual">
-        <div class="app-frame">
-          <div class="app-titlebar">
-            <span class="app-dot app-dot-r"></span>
-            <span class="app-dot app-dot-y"></span>
-            <span class="app-dot app-dot-g"></span>
-            <span class="app-titlebar-text">Care Summary</span>
-            <span style="width:40px"></span>
-          </div>
-          <div class="app-content">
-            <div class="chat-bubble chat-ai" style="max-width:100%">Based on your symptoms and lab results, here's your care plan:</div>
-            <div class="chat-dx" style="margin-top:10px">
-              <div class="chat-dx-title">Action Items</div>
-              <div style="font-size:0.75rem;color:var(--text-secondary);padding:4px 0">
-                <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" style="vertical-align:-2px;margin-right:6px"><path d="M4 9l3.5 3.5L14 5"/></svg>
-                Start Omeprazole 20mg daily
-              </div>
-              <div style="font-size:0.75rem;color:var(--text-secondary);padding:4px 0">
-                <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" style="vertical-align:-2px;margin-right:6px"><path d="M4 9l3.5 3.5L14 5"/></svg>
-                Order follow-up labs in 6 weeks
-              </div>
-              <div style="font-size:0.75rem;color:var(--text-secondary);padding:4px 0">
-                <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" style="vertical-align:-2px;margin-right:6px"><path d="M4 9l3.5 3.5L14 5"/></svg>
-                Avoid trigger foods (list attached)
-              </div>
-              <div style="font-size:0.75rem;color:var(--text-secondary);padding:4px 0">
-                <svg width="14" height="14" viewBox="0 0 18 18" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" style="vertical-align:-2px;margin-right:6px"><circle cx="9" cy="9" r="6"/><path d="M9 6v3l2 1.5"/></svg>
-                Follow up in 14 days
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="feature-card">
+        <h3>Private and secure</h3>
+        <p>HIPAA compliant. Your data is used only to deliver your care — never sold, never shared, never used to train AI models.</p>
       </div>
     </div>
   </div>
@@ -2103,80 +2052,16 @@
   </div>
 </section>
 
-<!-- ════ FEATURES ════ -->
-<section class="features">
-  <div class="wrap">
-    <div class="eyebrow">Why Teos</div>
-    <h2>The future of personalized care</h2>
-    <div class="features-grid">
-      <div class="feature-card">
-        <h3>Safe, medical AI</h3>
-        <p>Clinical AI gathers your history and builds a thorough assessment — then a physician reviews and signs off before anything reaches you. Not a chatbot — a physician-led platform designed around your health.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Real doctors, fast</h3>
-        <p>Teos physicians join your conversation in minutes, not days. They see your full history, so you never start from zero.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Care that remembers you</h3>
-        <p>Every conversation and health detail is saved. Your next visit picks up where the last one left off — continuous, connected care.</p>
-      </div>
-      <div class="feature-card">
-        <h3>No insurance needed</h3>
-        <p>One transparent membership. No copays, no deductibles, no surprise bills. Quality healthcare that doesn't require navigating the insurance system.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Private and secure</h3>
-        <p>HIPAA compliant. Your data is used only to deliver your care — never sold, never shared, never used to train AI models.</p>
-      </div>
-      <div class="feature-card">
-        <h3>Built for real people</h3>
-        <p>Designed for the 27 million Americans who deserve quality care without the system's red tape. Healthcare that works the way it should.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════ TRUST ════ -->
-<section class="trust">
-  <div class="wrap">
-    <div class="trust-badges">
-      <div class="trust-badge">
-        <div class="trust-badge-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-        </div>
-        <span>HIPAA Compliant</span>
-      </div>
-      <div class="trust-badge">
-        <div class="trust-badge-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2l3 7h7l-5.5 4.5 2 7L12 16l-6.5 4.5 2-7L2 9h7z"/></svg>
-        </div>
-        <span>Teos Physicians</span>
-      </div>
-      <div class="trust-badge">
-        <div class="trust-badge-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><path d="M12 8v4l2 2"/></svg>
-        </div>
-        <span>Privacy First</span>
-      </div>
-    </div>
-    <p class="trust-copy">
-      Your health information is protected by the highest security standards. We are HIPAA compliant
-      and encrypt your data in transit and at rest. We never sell your data or use it to train AI models. Your care, your data, your control.
-    </p>
-  </div>
-</section>
-
 <!-- ════ CLINICAL VALIDATION ════ -->
 <section class="validation">
   <div class="wrap">
     <div class="eyebrow">Clinical Validation</div>
-    <h2>Clinically validated against the gold standard</h2>
+    <h2>Validated against the gold standard</h2>
     <p class="section-sub">Our clinical engine was evaluated against over a decade of complex clinical cases from the NEJM Case Records of the Massachusetts General Hospital — one of the most respected case series in medicine.</p>
     <div class="validation-stats">
       <div class="stat-card">
-        <div class="stat-number">97%</div>
-        <div class="stat-label">Diagnostic accuracy</div>
+        <div class="stat-number">NEJM</div>
+        <div class="stat-label">Case Records validated</div>
       </div>
       <div class="stat-card">
         <div class="stat-number">10+</div>
@@ -2187,6 +2072,8 @@
         <div class="stat-label">Physician response</div>
       </div>
     </div>
+    <!-- TODO: Chris to supply methodology content for this page -->
+    <p class="section-sub" style="margin-top:1rem"><a href="#methodology" style="color:var(--teal);font-weight:500">How we validated Teos &rarr;</a></p>
   </div>
 </section>
 
@@ -2265,6 +2152,14 @@
           <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
         </button>
         <div class="faq-a"><p>No. Teos is designed to work without insurance. For $10 a month, you get unlimited medical guidance and two physician consultations per year. Additional visits are $35, with follow-ups at $15. No copays, no deductibles, no surprise bills.</p></div>
+      </div>
+      <!-- TODO: Chris to review this answer before launch -->
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          What counts as a physician visit?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="faq-a"><p>Most questions are answered by Teos's medical guidance at no extra charge — that's unlimited with your membership. A visit is when a Teos physician joins your conversation to diagnose, prescribe, or order labs. You'll always be told before a physician consultation begins, so you're never billed by surprise. Your membership includes two visits per year; additional visits are $35 and follow-ups within 14 days are $15.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">
