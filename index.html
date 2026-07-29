@@ -206,6 +206,8 @@
     border-radius: 1px; transition: transform 0.3s, opacity 0.2s;
   }
 
+  section, .nav, footer { position: relative; z-index: 1; }
+
   /* ── HERO ── */
   .hero {
     position: relative; min-height: 100vh; min-height: 100dvh;
@@ -1034,7 +1036,7 @@
 
   /* Floating geometric shapes */
   .geo-shapes {
-    position: fixed; inset: 0; pointer-events: none; z-index: -1;
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
     overflow: hidden;
   }
   .geo-shape {
