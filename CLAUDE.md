@@ -6,4 +6,6 @@
 - Availability is Texas-only; disclose prominently, not just in FAQ.
 - Pricing: $10/mo or $120/yr; 2 physician visits included; additional visits $35; follow-ups within 14 days $15; 30-day money-back guarantee. Keep all comparisons mathematically honest.
 - No claims of controlled-substance prescribing. No specific accuracy percentages without a linked methodology.
-- Primary CTA is always "Start for $10/month" linking to the signup flow.
+- Primary CTA is always "Start for $10/month" linking to the signup flow (https://teoshealth.com/join).
+- Never publish patient testimonials that are not verbatim from real members with documented consent.
+- Never ship a visible link or button that does nothing; stub interactions must show a clear "coming soon" state or be hidden.

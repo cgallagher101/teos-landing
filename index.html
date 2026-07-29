@@ -186,8 +186,15 @@
     padding: 0.25rem 0.75rem; font: inherit; font-size: 0.8125rem;
     color: var(--text-secondary); cursor: pointer; transition: border-color 0.2s, color 0.2s;
   }
-  .nav-lang:hover:not(:disabled) { border-color: var(--teal); color: var(--teal); }
-  .nav-lang:disabled { opacity: 0.5; cursor: default; }
+  .nav-lang:hover { border-color: var(--teal); color: var(--teal); }
+  .lang-toast {
+    position: fixed; top: 1rem; left: 50%; transform: translateX(-50%) translateY(-120%);
+    background: var(--navy); color: #fff; font-size: 0.875rem; font-weight: 500;
+    padding: 0.625rem 1.25rem; border-radius: var(--radius-pill);
+    opacity: 0; transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 9999; white-space: nowrap; pointer-events: none;
+  }
+  .lang-toast.visible { transform: translateX(-50%) translateY(0); opacity: 1; }
   .nav-signin { color: var(--text-secondary); font-weight: 500; transition: color 0.2s; }
   .nav-signin:hover { color: var(--text); }
   .nav-mobile-toggle {
@@ -1479,13 +1486,12 @@
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <!-- Spanish page is a fast-follow; toggle is non-functional for now -->
-      <button class="nav-lang" aria-label="Cambiar a espa&ntilde;ol" disabled>
+      <button class="nav-lang" id="lang-toggle" aria-label="Cambiar a espa&ntilde;ol">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><circle cx="8" cy="8" r="6"/><path d="M2 8h12M8 2c-2 2-2 10 0 12M8 2c2 2 2 10 0 12"/></svg>
         Espa&ntilde;ol
       </button>
       <a href="https://teoshealth.com" class="nav-signin">Sign In</a>
-      <!-- TODO: Chris to confirm real signup URL -->
-      <a href="https://teoshealth.com/signup" class="btn-primary">Start for $10/month</a>
+      <a href="https://teoshealth.com/join" class="btn-primary">Start for $10/month</a>
     </div>
     <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -1519,8 +1525,7 @@
         Message a Teos physician about anything — symptoms, prescriptions, lab results. Get answers in minutes, not weeks. Available across Texas.
       </p>
       <div class="hero-cta-row">
-        <!-- TODO: Chris to confirm real signup URL -->
-        <a href="https://teoshealth.com/signup" class="btn-primary hero-btn">Start for $10/month</a>
+          <a href="https://teoshealth.com/join" class="btn-primary hero-btn">Start for $10/month</a>
         <a href="#how" class="hero-link">See how it works <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="14" height="14"><path d="M8 3v10M3 8l5 5 5-5"/></svg></a>
       </div>
       <div class="hero-trust">
@@ -1584,7 +1589,8 @@
 </section>
 
 <!-- ════ SOCIAL PROOF ════ -->
-<!-- PLACEHOLDER: Replace these quotes with real beta-cohort testimonials before shipping to production. Do not launch paid traffic with placeholder quotes. -->
+<!-- GATED: Testimonials hidden until real member quotes with documented consent are available.
+     Uncomment the section below and replace placeholder text when ready.
 <section class="social-proof">
   <div class="wrap">
     <div class="social-proof-grid">
@@ -1603,6 +1609,7 @@
     </div>
   </div>
 </section>
+-->
 
 <!-- ════ HOW IT WORKS ════ -->
 <section class="how" id="how">
@@ -1882,8 +1889,7 @@
             Care navigation &amp; referrals
           </li>
         </ul>
-        <!-- TODO: Chris to confirm real signup URL -->
-        <a href="https://teoshealth.com/signup" class="btn-primary price-cta">Start for $10/month</a>
+          <a href="https://teoshealth.com/join" class="btn-primary price-cta">Start for $10/month</a>
         <div class="price-guarantee">
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="var(--text-muted)" stroke-width="1.5"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1z"/><path d="M8 4v4l2.5 1.5"/></svg>
           30-day money-back guarantee
@@ -2075,8 +2081,15 @@
         <div class="stat-label">Physician response</div>
       </div>
     </div>
-    <!-- TODO: Chris to supply methodology content for this page -->
     <p class="section-sub" style="margin-top:1rem"><a href="#methodology" style="color:var(--teal);font-weight:500">How we validated Teos &rarr;</a></p>
+
+    <!-- TODO: Chris to supply specific case counts and methodology details -->
+    <div id="methodology" style="margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--elevated);">
+      <h3 style="font-size:1.25rem; margin:0 0 0.75rem;">How we validated Teos</h3>
+      <p style="color:var(--text-secondary); line-height:1.7; max-width:640px;">
+        Teos's clinical engine was evaluated against the NEJM Case Records of the Massachusetts General Hospital — a case series spanning over a decade of complex, real-world diagnostic challenges. Each case was processed by the engine and its output compared against the published final diagnosis. All clinical conclusions are reviewed and signed off by a physician before reaching the member. Detailed methodology and results will be published here when the formal write-up is complete.
+      </p>
+    </div>
   </div>
 </section>
 
@@ -2210,16 +2223,17 @@
   <div class="wrap">
     <h2>Ready to get the care you deserve?</h2>
     <p>Join Teos and get access to 24/7 medical guidance and Teos physicians — starting at $10 a month.</p>
-    <!-- TODO: Chris to confirm real signup URL -->
-    <a href="https://teoshealth.com/signup" class="btn-primary">Start for $10/month</a>
+    <a href="https://teoshealth.com/join" class="btn-primary">Start for $10/month</a>
   </div>
 </section>
+
+<!-- Language toast -->
+<div class="lang-toast" id="lang-toast">Versión en español — muy pronto.</div>
 
 <!-- ════ STICKY MOBILE CTA ════ -->
 <div class="sticky-cta" id="sticky-cta" aria-hidden="true">
   <div class="sticky-cta-inner">
-    <!-- TODO: Chris to confirm real signup URL -->
-    <a href="https://teoshealth.com/signup" class="btn-primary sticky-cta-btn">Start for $10/month</a>
+    <a href="https://teoshealth.com/join" class="btn-primary sticky-cta-btn">Start for $10/month</a>
     <span class="sticky-cta-note">30-day money-back guarantee</span>
   </div>
 </div>
@@ -2302,6 +2316,16 @@
       }
     });
   });
+
+  // Español toast
+  const langBtn = document.getElementById('lang-toggle');
+  const langToast = document.getElementById('lang-toast');
+  if (langBtn && langToast) {
+    langBtn.addEventListener('click', () => {
+      langToast.classList.add('visible');
+      setTimeout(() => langToast.classList.remove('visible'), 2500);
+    });
+  }
 
 </script>
 
