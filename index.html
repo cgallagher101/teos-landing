@@ -938,6 +938,7 @@
     border-radius: 50%;
     pointer-events: none;
     filter: blur(60px);
+    z-index: 0;
   }
   .benefits::after {
     content: '';
@@ -947,7 +948,9 @@
     border-radius: 50%;
     pointer-events: none;
     filter: blur(60px);
+    z-index: 0;
   }
+  .benefits > * { position: relative; z-index: 1; }
 
   .pricing { position: relative; overflow: hidden; }
   .pricing::before {
@@ -958,7 +961,9 @@
     border-radius: 50%;
     pointer-events: none;
     filter: blur(80px);
+    z-index: 0;
   }
+  .pricing > * { position: relative; z-index: 1; }
 
   .validation { position: relative; overflow: hidden; }
   .validation::before {
@@ -969,6 +974,7 @@
     border-radius: 50%;
     pointer-events: none;
     filter: blur(60px);
+    z-index: 0;
   }
   .validation::after {
     content: '';
@@ -978,7 +984,9 @@
     border-radius: 50%;
     pointer-events: none;
     filter: blur(60px);
+    z-index: 0;
   }
+  .validation > * { position: relative; z-index: 1; }
 
   .cta-section { position: relative; overflow: hidden; }
   .cta-section::before {
@@ -989,7 +997,9 @@
     border-radius: 50%;
     pointer-events: none;
     filter: blur(80px);
+    z-index: 0;
   }
+  .cta-section > * { position: relative; z-index: 1; }
 
   /* Animated hero gradient mesh */
   .hero-glow {
@@ -1086,6 +1096,8 @@
   }
 
   /* Topographic contour lines on showcase section */
+  .showcase::after, .conditions::after, .trust::before, .how::before, .features::before, .faq::before { z-index: 0; }
+  .showcase > *, .conditions > *, .trust > * { position: relative; z-index: 1; }
   .showcase { position: relative; overflow: hidden; }
   .showcase::after {
     content: '';
