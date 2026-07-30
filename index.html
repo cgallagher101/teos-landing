@@ -963,27 +963,7 @@
     z-index: -1;
   }
 
-  .validation { position: relative; overflow: hidden; }
-  .validation::before {
-    content: '';
-    position: absolute; width: 600px; height: 600px;
-    top: -25%; left: -8%;
-    background: radial-gradient(circle, rgba(91,143,135,0.25) 0%, transparent 60%);
-    border-radius: 50%;
-    pointer-events: none;
-    filter: blur(60px);
-    z-index: -1;
-  }
-  .validation::after {
-    content: '';
-    position: absolute; width: 500px; height: 500px;
-    bottom: -20%; right: -10%;
-    background: radial-gradient(circle, rgba(196,162,101,0.15) 0%, transparent 60%);
-    border-radius: 50%;
-    pointer-events: none;
-    filter: blur(60px);
-    z-index: -1;
-  }
+  .validation { position: relative; }
 
   .cta-section { position: relative; overflow: hidden; }
   .cta-section::before {
