@@ -199,12 +199,12 @@
   .lang-toast.visible { transform: translateX(-50%) translateY(0); opacity: 1; }
   .btn-refer {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    background: transparent; color: var(--text); font-weight: 500;
+    background: transparent; color: var(--teal); font-weight: 600;
     padding: 0.5rem 1.125rem; border-radius: var(--radius-pill);
-    font-size: 0.9375rem; border: 1.5px solid var(--elevated);
-    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    font-size: 0.9375rem; border: 2px solid var(--teal);
+    transition: background 0.2s, color 0.2s, transform 0.15s;
   }
-  .btn-refer:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-1px); }
+  .btn-refer:hover { background: var(--teal); color: #fff; transform: translateY(-1px); }
   .btn-refer:active { transform: translateY(0); }
   .nav-signin { color: var(--text-secondary); font-weight: 500; transition: color 0.2s; }
   .nav-signin:hover { color: var(--text); }
