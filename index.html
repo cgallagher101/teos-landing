@@ -206,6 +206,58 @@
   }
   .btn-refer:hover { background: var(--teal); color: #fff; transform: translateY(-1px); }
   .btn-refer:active { transform: translateY(0); }
+
+  /* ── REFER MODAL ── */
+  .refer-overlay {
+    display: none; position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.5); align-items: center; justify-content: center;
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  }
+  .refer-overlay.open { display: flex; }
+  .refer-modal {
+    background: var(--surface); border-radius: 1rem; padding: 2rem;
+    width: 420px; max-width: 90vw; position: relative;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+  }
+  .refer-modal-close {
+    position: absolute; top: 0.75rem; right: 0.75rem; background: none; border: none;
+    font-size: 1.5rem; color: var(--text-muted); cursor: pointer; line-height: 1;
+  }
+  .refer-modal-close:hover { color: var(--text); }
+  .refer-modal h3 { font-size: 1.25rem; font-weight: 600; margin: 0 0 0.25rem; color: var(--text); }
+  .refer-modal p { font-size: 0.9375rem; color: var(--text-secondary); margin: 0 0 1.25rem; line-height: 1.5; }
+  .refer-link-row { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; }
+  .refer-link-input {
+    flex: 1; background: var(--elevated); border: 1px solid var(--teal-border);
+    border-radius: 0.5rem; padding: 0.625rem 0.75rem; font-size: 0.8125rem;
+    color: var(--text-secondary); font-family: monospace;
+    overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  }
+  .refer-copy-btn {
+    background: var(--teal); color: #fff; border: none; border-radius: 0.5rem;
+    padding: 0.625rem 1rem; font-size: 0.875rem; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; gap: 0.375rem; white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .refer-copy-btn:hover { background: var(--teal-hover); }
+  .refer-divider { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+  .refer-divider span { font-size: 0.8125rem; color: var(--text-muted); white-space: nowrap; }
+  .refer-divider hr { flex: 1; border: none; border-top: 1px solid var(--elevated); }
+  .refer-share-options { display: flex; gap: 1.5rem; justify-content: center; }
+  .refer-share-opt {
+    display: flex; flex-direction: column; align-items: center; gap: 0.375rem;
+    cursor: pointer; text-decoration: none; background: none; border: none; padding: 0;
+  }
+  .refer-share-icon {
+    width: 3rem; height: 3rem; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; font-size: 1.25rem;
+    transition: transform 0.15s;
+  }
+  .refer-share-opt:hover .refer-share-icon { transform: scale(1.08); }
+  .refer-share-icon-email { background: #e6f1fb; color: #185fa5; }
+  .refer-share-icon-sms { background: #e1f5ee; color: #0f6e56; }
+  .refer-share-icon-wa { background: #e1f5ee; color: #0f6e56; }
+  .refer-share-label { font-size: 0.75rem; color: var(--text-secondary); }
   .nav-signin { color: var(--text-secondary); font-weight: 500; transition: color 0.2s; }
   .nav-signin:hover { color: var(--text); }
   .nav-mobile-toggle {
@@ -2260,6 +2312,43 @@
   </div>
 </div>
 
+<!-- ════ REFER MODAL ════ -->
+<div class="refer-overlay" id="refer-overlay" role="dialog" aria-modal="true" aria-label="Refer a friend">
+  <div class="refer-modal">
+    <button class="refer-modal-close" id="refer-close" aria-label="Close">&times;</button>
+    <h3>Refer a friend</h3>
+    <p>Share your link — when a friend joins Teos, you both get a free month.</p>
+    <div class="refer-link-row">
+      <div class="refer-link-input" id="refer-link">teoshealth.com/join?ref=friend</div>
+      <button class="refer-copy-btn" id="refer-copy">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy
+      </button>
+    </div>
+    <div class="refer-divider"><hr><span>or share via</span><hr></div>
+    <div class="refer-share-options">
+      <a class="refer-share-opt" id="refer-email" aria-label="Share via email">
+        <span class="refer-share-icon refer-share-icon-email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+        </span>
+        <span class="refer-share-label">Email</span>
+      </a>
+      <a class="refer-share-opt" id="refer-sms" aria-label="Share via text message">
+        <span class="refer-share-icon refer-share-icon-sms">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </span>
+        <span class="refer-share-label">Text</span>
+      </a>
+      <a class="refer-share-opt" id="refer-wa" aria-label="Share via WhatsApp" target="_blank" rel="noopener">
+        <span class="refer-share-icon refer-share-icon-wa">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </span>
+        <span class="refer-share-label">WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</div>
+
 <!-- ════ FOOTER ════ -->
 <footer class="footer">
   <div class="wrap">
@@ -2348,6 +2437,47 @@
       setTimeout(() => langToast.classList.remove('visible'), 2500);
     });
   }
+
+  // Refer a friend
+  const referUrl = 'https://teoshealth.com/join?ref=friend';
+  const referText = 'Join me on Teos — a real doctor for $10/month. No insurance needed.';
+  const referOverlay = document.getElementById('refer-overlay');
+  const referClose = document.getElementById('refer-close');
+  const referCopy = document.getElementById('refer-copy');
+  const referEmail = document.getElementById('refer-email');
+  const referSms = document.getElementById('refer-sms');
+  const referWa = document.getElementById('refer-wa');
+
+  function openReferModal(e) {
+    e.preventDefault();
+    if (navigator.share && window.innerWidth <= 768) {
+      navigator.share({ title: 'Teos', text: referText, url: referUrl }).catch(() => {});
+      return;
+    }
+    referOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeReferModal() {
+    referOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('a[href="#refer"]').forEach(a => a.addEventListener('click', openReferModal));
+  referClose.addEventListener('click', closeReferModal);
+  referOverlay.addEventListener('click', e => { if (e.target === referOverlay) closeReferModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && referOverlay.classList.contains('open')) closeReferModal(); });
+
+  referCopy.addEventListener('click', () => {
+    navigator.clipboard.writeText(referUrl).then(() => {
+      referCopy.textContent = 'Copied!';
+      setTimeout(() => { referCopy.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy'; }, 2000);
+    });
+  });
+
+  referEmail.href = 'mailto:?subject=' + encodeURIComponent('Check out Teos') + '&body=' + encodeURIComponent(referText + '\n\n' + referUrl);
+  referSms.href = 'sms:?&body=' + encodeURIComponent(referText + ' ' + referUrl);
+  referWa.href = 'https://wa.me/?text=' + encodeURIComponent(referText + ' ' + referUrl);
 
 </script>
 
